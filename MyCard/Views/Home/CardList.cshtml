@@ -1,0 +1,14 @@
+﻿
+<md-list>
+    <md-list-item ng-repeat="card in Cards" $index ng-click="OnSelectCard(card)" class="noright" style="border-radius:150px;">
+        <img alt="{{ card.name }}" ng-src="" />
+        <p>{{ card.Name }}</p>
+        <p>{{ card.Description }}</p>
+        <div ng-repeat="category in card.Categories">
+            {{category.Name+" "}}
+        </div>
+    </md-list-item>
+
+</md-list>
+
+

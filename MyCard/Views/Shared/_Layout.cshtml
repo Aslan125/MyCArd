@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/ng")
+    @Scripts.Render("~/app")
+    <style>
+        md-sidenav {
+            width: 500px;
+            height: 100%;
+            padding: 20px;
+           
+        }
+
+        md-content {
+            background-color: #d2f5f1;
+            height: 100%;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body   layout="row" ng-cloak  ng-controller="AppController">
+ 
+
+
+
+
+
+
+    
+    <md-sidenav layout="column" class="md-sidenav-left" md-disable-backdrop="false" md-component-id="left" md-is-locked-open='SelectedCard'>
+
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Card detail</h1>
+        </md-toolbar>
+        <md-content >
+
+            <md-button ng-click="OnEditCard()">
+                Edit Card
+            </md-button>
+            <md-button ng-click="OnRemoveCard()">
+                Remove Card
+            </md-button>
+            <br />
+
+            Name:
+            <p>{{SelectedCard.Name}}</p>
+            <br />
+            Description:
+            <p>{{SelectedCard.Description}}</p>
+            <br />
+            Categories:
+            <p ng-repeat="category in SelectedCard.Categories">
+                {{category.Name}}
+            </p>
+            <br />
+            <br />
+                
+            <div>  <a href="#" target="_blank">Link</a></div>
+
+        </md-content>
+       
+    </md-sidenav>
+
+    <md-content flex layout="column" ng-controller="CardController" ng-init="Init()">
+  
+        <div layout="row">
+            <div flex="10">
+            </div>
+            <div flex="90">
+                <md-button ng-click="OnCreateCard()">
+                    Create Card
+                </md-button>
+                
+                <div ng-include="'@Url.Action("CardList", "Home")'"></div>
+
+                @RenderBody()
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                @RenderSection("scripts", required: false)
+            </div>
+
+        </div>
+  
+ 
+    </md-content>
+        
+
+
+      
+  
+
+</body>
+</html>

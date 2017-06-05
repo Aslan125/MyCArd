@@ -1,0 +1,52 @@
+﻿
+<md-dialog aria-label="Mango (Fruit)">
+    
+        <md-toolbar>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form >
+                    <md-input-container>
+                        <label>Name</label>
+                        <input ng-model="Card.Name" type="text">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Description</label>
+                        <input ng-model="Card.Description" type="text">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Categories</label>
+                        <md-select ng-change="OnChange()" ng-model="SelectedCategories" multiple>
+
+                           
+                            <md-option ng-if="Mode=='create'" ng-value="category" ng-repeat="category in Categories">{{category.Name}}</md-option>
+                            <md-option ng-if="Mode=='edit'" ng-value="category" ng-repeat="category in Categories">{{category.Name}}</md-option>
+
+
+                        </md-select>
+                    </md-input-container>
+
+                </form>
+
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="Cancel()" md-autofocus>
+               Cancel
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="Hide()" ng-if="Mode=='create'">
+               Create
+            </md-button>
+            <md-button ng-click="Hide()" ng-if="Mode=='edit'">
+                Save
+            </md-button>
+
+        </md-dialog-actions>
+ 
+</md-dialog>
