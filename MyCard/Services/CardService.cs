@@ -21,16 +21,16 @@ namespace MyCard.Services
 
             List<Category> Categories = DB.Categories.ToList();
        
-            foreach (var item in Categories)
-            {
-                if (Card.Categories.Exists(c => c.Id == item.Id))
-                {
-                    Card.Categories.RemoveAll(c => c.Id == item.Id);
+            //foreach (var item in Categories)
+            //{
+            //    if (Card.Categories.Exists(c => c.Id == item.Id))
+            //    {
+            //        Card.Categories.RemoveAll(c => c.Id == item.Id);
 
-                    Card.Categories.Add(item);
-                }
+            //        Card.Categories.Add(item);
+            //    }
 
-            }
+            //}
 
             DB.Cards.Add(Card);
             try
@@ -119,22 +119,23 @@ namespace MyCard.Services
    
             if (Card == null) return false;
 
-            List<Category> Categories = DB.Categories.ToList();
-            foreach (var item in Categories)
-            {
-                _card.Categories.Remove(item);
-              
-            }
-            foreach (var item in Categories)
-            {
-                if (Card.Categories.Exists(c => c.Id == item.Id))
-                {
-                    _card.Categories.Add(item);
-                }        
+            //List<Category> Categories = DB.Categories.ToList();
+            //foreach (var item in Categories)
+            //{
+            //    _card.Categories.Remove(item);
 
-            }
-        
+            //}
+            //foreach (var item in Categories)
+            //{
+            //    if (Card.Categories.Exists(c => c.Id == item.Id))
+            //    {
+            //        _card.Categories.Add(item);
+            //    }        
 
+            //}
+
+            _card.Categories.RemoveRange(0, _card.Categories.Count );
+            _card.Categories.AddRange(Card.Categories);
             _card.Name = Card.Name;
             _card.Description = Card.Description;
 
